@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import Form from "./Form";
+import List from "./List";
 
 const ToDoApp = () => {
   const [tasks, setTasks] = useState([]);
@@ -15,38 +17,28 @@ const ToDoApp = () => {
       completed: false,
     };
     setTasks(tasks.concat(newTask));
-
     event.target.reset();
   }
 
+  function deleteTask(id) {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  }
+
+  function toggleComplete(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => {
+        if (task.id === id) {
+          return { ...task, completed: !task.completed };
+        }
+        return task;
+      })
+    );
+  }
+
   return (
-    <section>
-      <form onSubmit={addTask} action="">
-        <label htmlFor="task">Write your task:</label>
-        <input type="text" name="task" id="task" />
-        <button
-          onClick={() => {
-            setTasks([...tasks]);
-          }}
-          type="submit"
-        >
-          Add task
-        </button>
-      </form>
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            {task.text}{" "}
-            <button
-              onClick={() => {
-                setTasks(tasks.filter((a) => a.id !== task.id));
-              }}
-            >
-              Remove
-            </button>
-          </li>
-        ))}
-      </ul>
+    <section className="h-[80vh] bg-[#f7ede2] absolute bottom-0 left-0 w-full pt-24 px-4 rounded-tl-[6rem]">
+      <Form addTask={addTask} />
+      <List tasks={tasks} deleteTask={deleteTask} toggleComplete={toggleComplete} />
     </section>
   );
 };
