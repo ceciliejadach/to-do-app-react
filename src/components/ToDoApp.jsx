@@ -36,7 +36,7 @@ const ToDoApp = () => {
   }
 
   return (
-    <section className="h-[80vh] bg-[#f7ede2] absolute bottom-0 left-0 w-full pt-24 px-4 rounded-tl-[6rem]">
+    <section className="h-[80vh] bg-[#f7ede2] absolute bottom-0 left-0 w-full pt-10 px-4 rounded-tl-[4rem]">
       <Form addTask={addTask} />
       <List tasks={tasks} deleteTask={deleteTask} toggleComplete={toggleComplete} />
     </section>

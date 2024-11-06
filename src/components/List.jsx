@@ -5,19 +5,19 @@ const List = ({ tasks, deleteTask, toggleComplete }) => {
   const completedTasks = tasks.filter((task) => task.completed);
 
   return (
-    <div>
+    <div className="grid">
       <section>
-        <h2>Incomplete Tasks</h2>
-        <ul>
+        {/* <h2>Incomplete Tasks</h2> */}
+        <ul className="max-w-md mx-auto">
           {incompleteTasks.map((task) => (
             <ListItem key={task.id} task={task} deleteTask={deleteTask} toggleComplete={toggleComplete} />
           ))}
         </ul>
       </section>
 
-      <section>
-        <h2>Completed Tasks</h2>
-        <ul>
+      <section className="pt-[10rem]">
+        <h2 className="max-w-md mx-auto text-xl">Tasks done</h2>
+        <ul className="max-w-md mx-auto">
           {completedTasks.map((task) => (
             <ListItem key={task.id} task={task} deleteTask={deleteTask} toggleComplete={toggleComplete} />
           ))}
