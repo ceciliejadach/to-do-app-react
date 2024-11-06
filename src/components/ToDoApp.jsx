@@ -6,6 +6,7 @@ import List from "./List";
 const ToDoApp = () => {
   const [tasks, setTasks] = useState([]);
 
+  //funktion til at tilføje en opgave
   function addTask(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -16,17 +17,21 @@ const ToDoApp = () => {
       text: task,
       completed: false,
     };
+
+    //concat() for at pushe den nye task
     setTasks(tasks.concat(newTask));
     event.target.reset();
   }
 
+  //funktion til at slette en opgave
   function deleteTask(id) {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    setTasks((deleteTasks) => deleteTasks.filter((task) => task.id !== id));
   }
 
+  //funktion til at skifte opgavens status mellem fuldført og ikke fuldført
   function toggleComplete(id) {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) => {
+    setTasks((prev) =>
+      prev.map((task) => {
         if (task.id === id) {
           return { ...task, completed: !task.completed };
         }
